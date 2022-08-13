@@ -2,7 +2,7 @@ pipeline {
     agent any
     stages {
         stage('BUILd') {
-            steps{
+            steps {
                 sh '''
                     #!/bin/bash
                     ls
@@ -12,17 +12,17 @@ pipeline {
             }   
         }
         stage('DEPLOY') {
-             steps{
+             steps {
                 echo "This is a DEPLOY stage"  
             } 
         }
         stage('TESTING1') {
-             steps{
+             steps {
                 sh 'echo "This is a TESTING1 stage"'
             } 
         }
         stage('TESTING2') {
-             steps{
+             steps {
                sh '''
                echo "This is a TESTING2 stage" 
                '''
