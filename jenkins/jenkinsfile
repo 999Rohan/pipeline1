@@ -4,10 +4,13 @@ pipeline {
         stage('BUILd') {
 
         }
-        stage('DeEPLOY') {
+        stage('DEPLOY') {
 
         }
-        stage('TEST') {
+        stage('TESTING1') {
+
+        }
+         stage('TESTING2') {
 
         }
     }
