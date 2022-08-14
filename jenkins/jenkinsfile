@@ -2,8 +2,7 @@ pipeline {
     agent none
     stages {
         stage('ALL') {
-            parallel {
-                stage('BUILd') {
+            stage('BUILd') {
                     agent any
                     steps {
                         git branch: 'main', url: 'https://github.com/999Rohan/pipeline1.git'
@@ -15,30 +14,29 @@ pipeline {
                             sleep 5
                         '''
                     }   
-                }
-                stage('DEPLOY') {
+            }    
+            stage('DEPLOY') {
                     agent { label 'master' }
                     steps {
                         echo "This is a DEPLOY stage"
                         sh 'sleep 5'  
                     } 
-                }
-                stage('TESTING1') {
+            }
+            stage('TESTING1') {
                         agent { label 'node2' }
                             steps {
                                 sh 'echo "This is a TESTING1 stage"'
                                 sh 'sleep 5'
-                            } 
-                }
-                stage('TESTING2') {
+                            }     
+            }
+            stage('TESTING2') {
                     agent { label 'node3' }
                             steps {
                                 sh '''
                                 echo "This is a TESTING2 stage" 
                                 sleep 5
-                                '''
-                            } 
-                }
+                                '''    
+                            }    
             }
         }       
     }
