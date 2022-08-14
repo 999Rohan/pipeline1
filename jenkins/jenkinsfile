@@ -6,6 +6,7 @@ pipeline {
                 stage('BUILd') {
                     agent any
                     steps {
+                        git branch: 'main', url: 'https://github.com/999Rohan/pipeline1.git'
                         sh '''
                             #!/bin/bash
                             ls
