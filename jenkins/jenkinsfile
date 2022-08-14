@@ -27,7 +27,6 @@ pipeline {
                             steps {
                                 sh 'echo "This is a TESTING1 stage"'
                                 sh 'sleep 5'
-                                sh 'bla bla'
                             } 
                 }
                 stage('TESTING2') {
