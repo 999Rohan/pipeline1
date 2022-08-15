@@ -1,0 +1,40 @@
+pipeline {
+    agent none
+
+    environment {
+        BRANCH = 'main'
+        GIT_REPO = 'https://github.com/999Rohan/pipeline1.git'
+    }
+
+    stages {
+            stage('BUILd') {
+                    agent any
+                    environment {
+                        BUILD_ENV = 'This_is_for_build_stage_only'
+                        DEMO = 'random words wgew fwgw'
+                    }
+                    steps {
+                        git branch: env.BRANCH, url: env.GIT_REPO
+                        echo "$DEMO"
+                        sh '''
+                            #!/bin/bash
+                            ls
+                            pwd
+                            echo "This is a BUILD stage"
+                            sleep 3
+                            echo "$BUILD_ENV"
+                        '''
+                    }   
+            }    
+            stage('DEPLOY') {
+                    agent { label 'master' }
+                    steps {
+                        echo "This is a DEPLOY stage"
+                        sh 'sleep 3'  
+                        echo "$BRANCH $GIT_REPO"
+                        echo "$BUILD_ENV"                        
+                    } 
+            }
+              
+    }
+}
