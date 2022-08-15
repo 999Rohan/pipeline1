@@ -1,7 +1,7 @@
 pipeline {
     agent none
 
-    parameter {
+    parameters {
         string (name: 'BRANCH', defaultValue: 'main', description: 'this is to test string parameter')
         string (name: 'GIT_REPO', defaultValue: 'https://github.com/999Rohan/pipeline1.git', description: 'this is to test string parameter')
     }
