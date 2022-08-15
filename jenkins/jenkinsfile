@@ -21,7 +21,7 @@ pipeline {
                             ls
                             pwd
                             echo "This is a BUILD stage"
-                            sleep 5
+                            sleep 3
                             echo "$BUILD_ENV"
                         '''
                     }   
@@ -30,7 +30,7 @@ pipeline {
                     agent { label 'master' }
                     steps {
                         echo "This is a DEPLOY stage"
-                        sh 'sleep 5'  
+                        sh 'sleep 3'  
                         echo "$BRANCH $GIT_REPO"
                         echo "$BUILD_ENV"                        
                     } 
