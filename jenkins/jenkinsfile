@@ -16,7 +16,6 @@ pipeline {
                     steps {
                         git branch: env.BRANCH, url: env.GIT_REPO
                         echo "$DEMO"
-                        random: env.DEMO
                         sh '''
                             #!/bin/bash
                             ls
