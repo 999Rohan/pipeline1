@@ -1,28 +1,24 @@
 pipeline {
     agent none
 
-    environment {
-        BRANCH = 'main'
-        GIT_REPO = 'https://github.com/999Rohan/pipeline1.git'
+    }
+
+    parameter {
+        string (name: 'BRANCH', defaultValue: 'main', description: 'this is to test string parameter')
+        string (name: 'GIT_REPO', defaultValue: 'https://github.com/999Rohan/pipeline1.git', description: 'this is to test string parameter')
     }
 
     stages {
             stage('BUILd') {
                     agent any
-                    environment {
-                        BUILD_ENV = 'This_is_for_build_stage_only'
-                        DEMO = 'random words wgew fwgw'
-                    }
                     steps {
-                        git branch: env.BRANCH, url: env.GIT_REPO
-                        echo "$DEMO"
+                        git branch: params.BRANCH, url: params.GIT_REPO
                         sh '''
                             #!/bin/bash
                             ls
                             pwd
                             echo "This is a BUILD stage"
                             sleep 3
-                            echo "$BUILD_ENV"
                         '''
                     }   
             }    
@@ -31,8 +27,9 @@ pipeline {
                     steps {
                         echo "This is a DEPLOY stage"
                         sh 'sleep 3'  
-                        echo "$BRANCH $GIT_REPO"
-                        echo "$BUILD_ENV"                        
+                        echo "$BRANCH $GIT_REPO" 
+                        echo "$params.BRANCH"
+                        echo "$params.GIT_REPO"                       
                     } 
             }
               
