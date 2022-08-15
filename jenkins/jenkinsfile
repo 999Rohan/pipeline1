@@ -11,9 +11,11 @@ pipeline {
                     agent any
                     environment {
                         BUILD_ENV = 'This_is_for_build_stage_only'
+                        DEMO = 'random words wgew fwgw'
                     }
                     steps {
                         git branch: env.BRANCH, url: env.GIT_REPO
+                        echo "$DEMO"
                         sh '''
                             #!/bin/bash
                             ls
