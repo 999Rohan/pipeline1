@@ -1,10 +1,19 @@
 pipeline {
     agent none
+
+    environment {
+        BRANCH = 'main'
+        GIT_REPO = 'https://github.com/999Rohan/pipeline1.git'
+    }
+
     stages {
             stage('BUILd') {
                     agent any
+                    environment {
+                        BUILD_ENV = 'This_is_for_build_stage_only'
+                    }
                     steps {
-                        git branch: 'main', url: 'https://github.com/999Rohan/pipeline1.git'
+                        git branch: $BRANCH, url: $GIT_REPO
                         sh '''
                             #!/bin/bash
                             ls
