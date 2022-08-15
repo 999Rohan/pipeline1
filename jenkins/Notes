@@ -1,0 +1,10 @@
+stage('DEPLOY') {
+                    agent { label 'master' }
+                    steps {
+                        echo "This is a DEPLOY stage"
+                        sh 'sleep 3'  
+                        echo "$BRANCH $GIT_REPO" 
+                        echo "$params.BRANCH"
+                        echo "$params.GIT_REPO"                       
+                    } 
+            }
