@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sh 'echo "this is test1 stage"'
                 sh 'sleep 2'
-                sh 'echo "$BUILD_ENV"'
+                echo "$BUILD_ENV"
             }  
         }
         stage('TEST2') {
@@ -53,6 +53,7 @@ pipeline {
                     echo "$BUILD_ENV"
                     echo $TEST2
                 '''
+                echo "$TEST2"
             } 
         }
     }
