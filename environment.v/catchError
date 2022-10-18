@@ -26,7 +26,7 @@ pipeline {
         stage('DEPLOY') {
             agent any
             steps {
-                catchError(message: 'if this stage fails then we just skip this stage') {
+                catchError(message: 'if this stage fails then we just skip this stage', buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
                     echo 'this is deploy stage'
                     sh 'echo bla'
                     sh '''echo "gfhgf vjg jhfjhf"'''
