@@ -30,6 +30,9 @@ pipeline {
                 sh 'echo bla'
                 sh '''echo "gfhgf vjg jhfjhf"'''
                 echo "$BUILD_ENV"
+                catchError {
+                    sh "exit 1"
+                }
             }  
         }
         stage('TEST1') {
