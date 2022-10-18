@@ -19,7 +19,7 @@ pipeline {
                  pwd
                  ls
                  echo "this is build stage"
-                 env.BUILD_ENV
+                 $BUILD_ENV
            '''  
           }
         }
@@ -46,7 +46,7 @@ pipeline {
                     echo "1234 sdfgh fghj 789" 
                     echo "this is test2 stage"
                     sleep 2
-                    env.BUILD_ENV
+                    echo "$BUILD_ENV"
                 '''
             } 
         }
