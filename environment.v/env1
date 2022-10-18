@@ -29,7 +29,7 @@ pipeline {
                     echo 'this is deploy stage'
                     sh 'echo bla'
                     sh '''echo "gfhgf vjg jhfjhf"'''
-                    sh "echo "$BUILD_ENV"" 
+                    sh 'echo "$BUILD_ENV"'
             }  
         }
         stage('TEST1') {
