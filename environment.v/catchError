@@ -1,0 +1,63 @@
+pipeline {
+    agent none
+
+    environment {     
+         BRANCH = 'main'
+         GIT_REPO = 'https://github.com/999Rohan/pipeline1.git'
+    }
+
+    stages {
+        stage('BUILD') {
+          agent { label 'slave1' }
+          environment {
+              BUILD_ENV = 'only for build env variable'
+          }
+          steps {
+             git branch: env.BRANCH, url: env.GIT_REPO
+             sh '''
+                 #!/bin/bash
+                 pwd
+                 ls
+                 echo "this is build stage"
+                 echo $BUILD_ENV
+           '''  
+          }
+        }
+        stage('DEPLOY') {
+            agent any
+            steps {
+                catchError {
+                    echo 'this is deploy stage'
+                    sh 'echo bla'
+                    sh '''echo "gfhgf vjg jhfjhf"'''
+                    echo "$BUILD_ENV" 
+                }
+            }  
+        }
+        stage('TEST1') {
+            agent { label 'slave2' }
+            steps {
+                sh 'echo "this is test1 stage"'
+                sh 'sleep 2'
+                sh 'echo "$BUILD_ENV"'
+            }  
+        }
+        stage('TEST2') {
+            agent { label 'master' }
+            environment {
+                TEST2 = 'this is to test for TEST2 build'
+            }
+            steps {
+                sh '''
+                    pwd; ls
+                    echo "1234 sdfgh fghj 789" 
+                    echo "this is test2 stage"
+                    sleep 2
+                    echo "$BUILD_ENV"
+                    echo $TEST2
+                '''
+                echo "$TEST2"
+            } 
+        }
+    }
+}
