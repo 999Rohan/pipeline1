@@ -9,8 +9,11 @@ pipeline {
     stages {
         stage('BUILD') {
           agent { label 'slave1' }
+          environment {
+              BUILD_ENV = 'only for build env variable'
+          }
           steps {
-             git branch: $BRANCH, url: $GIT_REPO
+             git branch: env.BRANCH, url: env.GIT_REPO
              sh '''
                  #!/bin/bash
                  pwd
@@ -41,6 +44,7 @@ pipeline {
                     echo "1234 sdfgh fghj 789" 
                     echo "this is test2 stage"
                     sleep2
+                    echo $BUILD_ENV
                 '''
             } 
         }
