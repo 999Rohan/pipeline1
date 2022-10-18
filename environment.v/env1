@@ -19,7 +19,7 @@ pipeline {
                  pwd
                  ls
                  echo "this is build stage"
-                 $BUILD_ENV
+                 echo $BUILD_ENV
            '''  
           }
         }
