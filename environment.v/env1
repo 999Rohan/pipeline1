@@ -36,10 +36,14 @@ pipeline {
             steps {
                 sh 'echo "this is test1 stage"'
                 sh 'sleep 2'
+                echo $BUILD_ENV
             }  
         }
         stage('TEST2') {
             agent { label 'master' }
+            environment {
+                TEST2 = 'this is to test for TEST2 build'
+            }
             steps {
                 sh '''
                     pwd; ls
@@ -47,6 +51,7 @@ pipeline {
                     echo "this is test2 stage"
                     sleep 2
                     echo "$BUILD_ENV"
+                    echo $TEST2
                 '''
             } 
         }
