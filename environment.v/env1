@@ -19,7 +19,7 @@ pipeline {
                  pwd
                  ls
                  echo "this is build stage"
-                 echo env.BUILD_ENV
+                 env.BUILD_ENV
            '''  
           }
         }
@@ -42,10 +42,11 @@ pipeline {
             agent { label 'master' }
             steps {
                 sh '''
+                    pwd; ls
                     echo "1234 sdfgh fghj 789" 
                     echo "this is test2 stage"
                     sleep 2
-                    echo env.BUILD_ENV
+                    env.BUILD_ENV
                 '''
             } 
         }
