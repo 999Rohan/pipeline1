@@ -26,12 +26,11 @@ pipeline {
         stage('DEPLOY') {
             agent any
             steps {
-                echo 'this is deploy stage'
-                sh 'echo bla'
-                sh '''echo "gfhgf vjg jhfjhf"'''
-                echo "$BUILD_ENV"
                 catchError {
-                    sh "exit 1"
+                    echo 'this is deploy stage'
+                    sh 'echo bla'
+                    sh '''echo "gfhgf vjg jhfjhf"'''
+                    echo "$BUILD_ENV" 
                 }
             }  
         }
