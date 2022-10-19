@@ -2,8 +2,8 @@ pipeline {
     agent none
 
     parameters {
-           string (name: 'BRANCH', defaultValue: 'main', description: 'this is a test parameter' )
-           string (name: 'GIT_REPO', defaultValue: 'https://github.com/999Rohan/pipeline1.git', description: 'this is a test parameter' )
+           string (name: 'BRANCH', defaultValue: 'main', description: 'enter branch name' )
+           string (name: 'GIT_REPO', defaultValue: 'https://github.com/999Rohan/pipeline1.git', description: 'this is a test parameter, enter repo-url' )
     }
 
     stages {
