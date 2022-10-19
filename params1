@@ -62,6 +62,7 @@ pipeline {
                     echo "${params.BRANCH}"
                 '''
                 echo "$TEST2"
+                echo "${params.BRANCH}"
             } 
         }
     }
