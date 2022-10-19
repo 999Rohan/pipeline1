@@ -1,0 +1,70 @@
+pipeline {
+    agent none
+
+    parameters {
+           string (name: 'BRANCH', defaultValue: 'main', description: 'enter branch name' )
+           string (name: 'GIT_REPO', defaultValue: 'https://github.com/999Rohan/pipeline1.git', description: 'this is a test parameter, enter repo-url' )
+           choice ()
+    }
+
+    stages {
+        stage('BUILD') {
+          agent { label 'slave1' }
+          environment {
+              BUILD_ENV = 'only for build env variable'
+          }
+          steps {
+             git branch: params.BRANCH, url: params.GIT_REPO
+             sh '''
+                 #!/bin/bash
+                 pwd
+                 ls
+                 echo "this is build stage"
+                 echo $BUILD_ENV
+            '''  
+                 echo "$BUILD_ENV"
+          }
+        }
+        stage('DEPLOY') {
+            agent any
+            steps {
+                catchError {
+                        echo 'this is deploy stage'
+                        sh 'echo bla'
+                        sh '''echo "gfhgf vjg jhfjhf"'''
+                        sh 'echo "$BUILD_ENV"'
+                        echo "${params.BRANCH}"
+                        echo "${params.GIT_REPO}"
+                }        
+            }  
+        }
+        stage('TEST1') {
+            agent { label 'slave2' }
+            steps {
+                sh 'echo "this is test1 stage"'
+                sh 'sleep 2'
+                sh 'echo "$BUILD_ENV"'
+                echo "${params.GIT_REPO}"
+                echo "ffss"
+            }  
+        }
+        stage('TEST2') {
+            agent { label 'master' }
+            environment {
+                TEST2 = 'this is to test for TEST2 build'
+            }
+            steps {
+                sh '''
+                    pwd; ls
+                    echo "1234 sdfgh fghj 789" 
+                    echo "this is test2 stage"
+                    sleep 2
+                    echo "$BUILD_ENV"
+                    echo $TEST2
+                '''
+                echo "$TEST2"
+                echo "${params.BRANCH}"
+            } 
+        }
+    }
+}
