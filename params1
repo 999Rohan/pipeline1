@@ -44,7 +44,7 @@ pipeline {
                 sh 'echo "this is test1 stage"'
                 sh 'sleep 2'
                 sh 'echo "$BUILD_ENV"'
-                sh 'echo "${params.GIT_REPO}"'
+                echo "${params.GIT_REPO}"
             }  
         }
         stage('TEST2') {
