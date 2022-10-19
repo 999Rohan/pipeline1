@@ -64,6 +64,7 @@ pipeline {
                 '''
                 echo "$TEST2"
                 echo "${params.BRANCH}"
+                echo "$BUILD_ENV"
             } 
         }
     }
