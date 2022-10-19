@@ -20,7 +20,8 @@ pipeline {
                  ls
                  echo "this is build stage"
                  echo $BUILD_ENV
-           '''  
+            '''  
+                 echo "$BUILD_ENV"
           }
         }
         stage('DEPLOY') {
@@ -44,6 +45,7 @@ pipeline {
                 sh 'echo "$BUILD_ENV"'
                 echo "${params.GIT_REPO}"
                 echo "ffss"
+                echo "$BUILD_ENV"
             }  
         }
         stage('TEST2') {
