@@ -31,10 +31,8 @@ pipeline {
                         sh 'echo bla'
                         sh '''echo "gfhgf vjg jhfjhf"'''
                         sh 'echo "$BUILD_ENV"'
-                        sh '''
                         echo "${params.BRANCH}"
                         echo "${params.GIT_REPO}"
-                        '''
                 }        
             }  
         }
@@ -45,7 +43,7 @@ pipeline {
                 sh 'sleep 2'
                 sh 'echo "$BUILD_ENV"'
                 echo "${params.GIT_REPO}"
-                echo ffss
+                echo "ffss"
             }  
         }
         stage('TEST2') {
