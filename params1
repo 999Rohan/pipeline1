@@ -59,7 +59,6 @@ pipeline {
                     sleep 2
                     echo "$BUILD_ENV"
                     echo $TEST2
-                    echo "${params.BRANCH}"
                 '''
                 echo "$TEST2"
                 echo "${params.BRANCH}"
