@@ -45,7 +45,7 @@ pipeline {
                 sh 'echo "$BUILD_ENV"'
                 echo "${params.GIT_REPO}"
                 echo "ffss"
-                echo "$BUILD_ENV"
+                
             }  
         }
         stage('TEST2') {
